@@ -15,9 +15,12 @@ There are two ways to run this. Pick one.
 
 ## Option A — Installer (recommended)
 
-`windows/panel/dist/Claude Usage Setup 1.0.0.exe` is a self-contained
-installer: it bundles the app, the poller, and Electron itself — nothing
-else to install first, no Node.js required on the target machine.
+Download **`Claude Usage Setup <version>.exe`** from
+[Releases](../../releases) — a self-contained installer that bundles the
+app, the poller, and Electron itself, so there's nothing else to install
+first and no Node.js needed on the target machine. (It is *not* checked
+into this repo — `windows/panel/dist/` is build output, gitignored; you
+only get that path if you build it yourself, see below.)
 
 1. Run the installer. It's a **per-user** install (`perMachine: false`), so
    it does **not** need Administrator rights and installs to
@@ -26,15 +29,18 @@ else to install first, no Node.js required on the target machine.
    your PC"). This is expected — the installer isn't code-signed (that
    needs a paid certificate we don't have). Click **More info → Run
    anyway** if you trust the build (or built it yourself from this repo).
-3. That's it. The app starts itself after install, polls usage every 5
-   seconds on its own (no separate background task needed), and defaults to
+3. That's it. The app starts itself after install, polls usage every 30
+   seconds on its own (backing off automatically if the endpoint ever
+   rate-limits it; no separate background task needed), and defaults to
    starting at login. Drag the panel from anywhere to move it. Click the ↻
    icon in the panel's header (or "Refresh now" in the tray menu) to force
    an immediate update instead of waiting; click the **×** to hide the
    panel (it keeps running in the tray — click the tray icon or "Show
    panel" to bring it back). Right-click the tray icon (bottom-right, near
    the clock) to toggle **Start with Windows**, switch **Theme**
-   (Dark/Light), change transparency, or Quit.
+   (Dark/Light), change transparency, choose which rows to **Show**
+   (Session/Weekly/Credits individually — the panel resizes to match), or
+   Quit.
    Launching the app again while it's already running (e.g.
    double-clicking the shortcut a second time) just brings the existing
    panel to front — it won't open a second copy.
@@ -98,13 +104,15 @@ npm start
 ```
 
 A small panel (dark by default) should appear in the top-right of your
-screen with three rows: Session, Weekly · Chat + Code, Credits.
+screen with three rows: Session, Weekly (hover it — it's a shared quota
+with claude.ai chat, not Claude Code alone), and Credits.
 Drag it from anywhere on the panel to move it. It polls itself every 30
 seconds while running (backing off automatically if the endpoint ever
 rate-limits it) — no separate poller process needed — and the ↻
 button forces an immediate refresh; the **×** button hides it (it's still
 running in the tray). Right-click the tray icon for transparency presets,
-**Theme** (Dark/Light), "Start with Windows", "Refresh now", and Quit.
+**Theme** (Dark/Light), which rows to **Show**, "Start with Windows",
+"Refresh now", and Quit.
 Running `npm start` again while an instance is already up just focuses the
 existing window instead of opening a second one.
 
