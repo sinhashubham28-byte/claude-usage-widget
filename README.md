@@ -46,8 +46,8 @@ Code itself calls).
 
 ## Project layout
 
-- [`macos/`](macos/) — the macOS build (Swift/AppKit panel + shell
-  scripts + [`macos/SETUP.md`](macos/SETUP.md))
+- [`macos/`](macos/) — the macOS build (Swift/AppKit panel + poll script
+  + [`macos/SETUP.md`](macos/SETUP.md))
 - [`windows/`](windows/) — the Windows build (Electron app in
   `windows/panel/`, dev-only scripts in `windows/dev/`, and
   [`windows/SETUP.md`](windows/SETUP.md))

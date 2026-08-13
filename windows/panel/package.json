@@ -2,7 +2,7 @@
   "name": "claude-usage-panel",
   "productName": "Claude Usage",
   "version": "1.0.0",
-  "description": "Floating desktop panel showing Claude Pro/Max usage (session, weekly chat+code, weekly Cowork)",
+  "description": "Floating desktop panel showing Claude Pro/Max usage (session, weekly, and usage credits)",
   "main": "main.js",
   "private": true,
   "author": "Shubham Sinha",
