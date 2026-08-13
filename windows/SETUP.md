@@ -6,9 +6,8 @@ from claude.ai chat and Claude Code both count against it), and **credits**
 (extra usage credits that kick in once you hit a plan limit).
 
 This is the Windows port of the original macOS widget — see
-[`../BUILD_NOTES.md`](../BUILD_NOTES.md) for the full architecture. The
-macOS files in the parent folder (Swift panel, launchd-based scripts) are
-unrelated to this folder and can be ignored on Windows.
+[`../macos/SETUP.md`](../macos/SETUP.md) for the macOS build, which lives
+entirely under `../macos/` and is unrelated to this folder.
 
 There are two ways to run this. Pick one.
 
@@ -77,7 +76,7 @@ npm install
 
 ```powershell
 cd windows
-node claude-usage-poll.js
+node dev\claude-usage-poll.js
 ```
 
 This should exit silently and write a file to
@@ -122,7 +121,7 @@ existing window instead of opening a second one.
 
 ```powershell
 cd windows
-.\register-tasks.ps1
+.\dev\register-tasks.ps1
 ```
 
 Registers one per-user Scheduled Task (`ClaudeUsagePanel`, no admin needed)
@@ -134,7 +133,7 @@ or immediately with:
 Start-ScheduledTask -TaskName ClaudeUsagePanel
 ```
 
-To remove it: `.\register-tasks.ps1 -Uninstall`.
+To remove it: `.\dev\register-tasks.ps1 -Uninstall`.
 
 ---
 
@@ -169,7 +168,7 @@ Xm ago" badge.
 
 ```powershell
 cd windows
-.\register-tasks.ps1 -Uninstall
+.\dev\register-tasks.ps1 -Uninstall
 Remove-Item -Recurse -Force windows\panel\node_modules
 ```
 

@@ -2,13 +2,18 @@
 windows/panel/dist/
 windows/panel/node_modules/
 
-# Compiled macOS binary — build from claude-usage-float.swift (see BUILD_NOTES.md)
-claude-usage-float
+# Compiled macOS binary — build from macos/claude-usage-float.swift
+macos/claude-usage-float
 
 # Windows installer distribution bundle — published via GitHub Releases instead
 # of being committed (it's ~95MB, git is the wrong place for it)
 Claude Usage - Windows Install/
 Claude Usage - Windows Install.zip
+
+# Internal development log and design specs — kept locally for our own
+# reference while working on this, not meant for the public repo.
+BUILD_NOTES.md
+docs/
 
 # OS cruft
 .DS_Store

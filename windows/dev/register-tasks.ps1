@@ -38,7 +38,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-$RootDir  = $PSScriptRoot
+$RootDir  = Split-Path $PSScriptRoot -Parent  # windows/ — this script lives in windows/dev/
 $PanelTask = 'ClaudeUsagePanel'
 
 if ($Uninstall) {

@@ -31,7 +31,7 @@ anywhere except Anthropic's own usage-check endpoint (the same one Claude
 Code itself calls).
 
 - **macOS** — a native Swift/AppKit panel, polled by a background
-  launchd agent. See [`SETUP.md`](SETUP.md).
+  launchd agent. See [`macos/SETUP.md`](macos/SETUP.md).
 - **Windows** — an Electron app that's fully self-contained (polls
   itself, no separate background task). See
   [`windows/SETUP.md`](windows/SETUP.md) to run from source, or grab the
@@ -46,14 +46,11 @@ Code itself calls).
 
 ## Project layout
 
-- [`SETUP.md`](SETUP.md) — macOS install guide
-- [`windows/SETUP.md`](windows/SETUP.md) — Windows install guide (source
-  or installer)
-- [`BUILD_NOTES.md`](BUILD_NOTES.md) — the full build log: architecture,
-  every bug hit and how it was diagnosed, and the reasoning behind design
-  decisions along the way
-- [`docs/superpowers/specs/`](docs/superpowers/specs/) — design specs for
-  the larger feature/redesign decisions
+- [`macos/`](macos/) — the macOS build (Swift/AppKit panel + shell
+  scripts + [`macos/SETUP.md`](macos/SETUP.md))
+- [`windows/`](windows/) — the Windows build (Electron app in
+  `windows/panel/`, dev-only scripts in `windows/dev/`, and
+  [`windows/SETUP.md`](windows/SETUP.md))
 
 ## License
 
