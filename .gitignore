@@ -1,0 +1,15 @@
+# Build artifacts (installer output) — rebuild with `npm run dist` inside windows/panel
+windows/panel/dist/
+windows/panel/node_modules/
+
+# Compiled macOS binary — build from claude-usage-float.swift (see BUILD_NOTES.md)
+claude-usage-float
+
+# Windows installer distribution bundle — published via GitHub Releases instead
+# of being committed (it's ~95MB, git is the wrong place for it)
+Claude Usage - Windows Install/
+Claude Usage - Windows Install.zip
+
+# OS cruft
+.DS_Store
+Thumbs.db

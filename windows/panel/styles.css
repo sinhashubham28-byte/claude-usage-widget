@@ -1,0 +1,207 @@
+:root {
+  --bg-alpha: 0.75;
+
+  /* Dark theme (default) — warm near-black rather than neutral gray, so
+     the coral accent (tray icon, high-usage bar state) doesn't sit
+     against a cold background it has nothing to do with. */
+  --panel-bg-rgb: 24, 20, 26;
+  --text-color: #f2eee9;
+  --track-bg: rgba(242, 238, 233, 0.1);
+  --hover-bg: rgba(242, 238, 233, 0.1);
+  --close-hover-bg: rgba(217, 119, 87, 0.25);
+  --panel-border: rgba(242, 238, 233, 0.08);
+  --bar-inset-shadow: rgba(0, 0, 0, 0.25);
+}
+
+:root[data-theme='light'] {
+  --panel-bg-rgb: 251, 250, 248;
+  --text-color: #211d1a;
+  --track-bg: rgba(33, 29, 26, 0.08);
+  --hover-bg: rgba(33, 29, 26, 0.06);
+  --close-hover-bg: rgba(217, 119, 87, 0.18);
+  --panel-border: rgba(33, 29, 26, 0.08);
+  --bar-inset-shadow: rgba(0, 0, 0, 0.12);
+}
+
+html,
+body {
+  margin: 0;
+  background: transparent;
+  overflow: hidden;
+  font-family: 'Segoe UI', -apple-system, 'Helvetica Neue', sans-serif;
+  color: var(--text-color);
+  user-select: none;
+}
+
+body {
+  /* Vertical-only room for .panel's box-shadow to actually render its
+     falloff instead of being hard-clipped by the window's own bounds.
+     The window is sized to match this element (see renderer.js's
+     ResizeObserver, which measures body, not .panel, for exactly this
+     reason) — with zero padding here the window would be pixel-perfect
+     to the card alone and the shadow would have nowhere to fade into,
+     which looked like a stray dark line hugging the top edge. Kept small
+     on purpose — this pairs with a deliberately subtle shadow below; a
+     bigger blur would need more room here and read as a heavy dark blob
+     instead of a quiet lift. */
+  padding: 10px 0;
+}
+
+.panel {
+  /* Draggable from anywhere in the panel, not just the header — buttons
+     opt back out individually via .icon-btn's no-drag below. */
+  -webkit-app-region: drag;
+  cursor: move;
+  background: rgba(var(--panel-bg-rgb), var(--bg-alpha));
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  padding: 20px 22px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
+  box-sizing: border-box;
+  width: 100vw;
+  /* Intentionally no min-height: 100vh — the window is resized in main.js
+     to match this element's natural content height (see the
+     ResizeObserver in renderer.js), not the other way around. Forcing
+     this to fill the viewport is what caused blank dead space at the
+     bottom when a row collapsed to its empty state but the window's
+     saved height hadn't shrunk to match. */
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  opacity: 0.55;
+  margin-bottom: 16px;
+}
+
+.header-drag {
+  flex: 1;
+}
+
+.icon-btn {
+  -webkit-app-region: no-drag;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  opacity: 0.6;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 4px;
+  transition: opacity 0.15s ease, background 0.15s ease, transform 0.4s ease;
+}
+
+.icon-btn:hover {
+  opacity: 1;
+  background: var(--hover-bg);
+}
+
+.close-btn:hover {
+  background: var(--close-hover-bg);
+}
+
+.icon-btn.spinning {
+  transform: rotate(360deg);
+}
+
+.account-block {
+  margin-bottom: 18px;
+}
+.account-block:last-child {
+  margin-bottom: 0;
+}
+
+.account-name {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.55;
+  margin-bottom: 10px;
+}
+
+.headline {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-bottom: 18px;
+}
+
+.headline strong {
+  font-weight: 700;
+  opacity: 1;
+}
+
+.row {
+  margin-bottom: 16px;
+}
+.row:last-child {
+  margin-bottom: 0;
+}
+
+.row-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.row-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.row-value {
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.bar-track {
+  background: var(--track-bg);
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+  margin-top: 6px;
+  box-shadow: inset 0 1px 2px var(--bar-inset-shadow);
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  position: relative;
+  transition: width 0.4s ease;
+}
+
+.bar-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0));
+}
+
+.row-sub {
+  font-size: 11px;
+  opacity: 0.55;
+  margin-top: 5px;
+}
+
+.row-empty {
+  font-size: 12px;
+  opacity: 0.5;
+  margin-top: 2px;
+}
+
+.stale {
+  font-size: 10px;
+  opacity: 0.45;
+  margin-top: 6px;
+}
+
+.empty-state {
+  font-size: 12px;
+  opacity: 0.55;
+}

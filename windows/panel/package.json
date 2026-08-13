@@ -1,0 +1,47 @@
+{
+  "name": "claude-usage-panel",
+  "productName": "Claude Usage",
+  "version": "1.0.0",
+  "description": "Floating desktop panel showing Claude Pro/Max usage (session, weekly chat+code, weekly Cowork)",
+  "main": "main.js",
+  "private": true,
+  "author": "Shubham Sinha",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "node scripts/build-with-retry.js",
+    "dist:once": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^43.3.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "dev.shubhamsinha.claude-usage-panel",
+    "productName": "Claude Usage",
+    "asar": true,
+    "files": [
+      "**/*",
+      "!assets/make-icon.js"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64"] }
+      ],
+      "icon": "assets/app-icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Claude Usage",
+      "runAfterFinish": true,
+      "include": "installer.nsh"
+    }
+  }
+}
